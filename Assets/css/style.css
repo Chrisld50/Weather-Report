@@ -1,0 +1,21 @@
+html {
+font-family: Georgia, 'Times New Roman', Times, serif;
+margin: 10px;
+}
+.topOf{
+    text-align: center;
+    background-image: linear-gradient(to right, blue, rgb(58, 58, 126));
+    color: white;
+    padding: 10px;
+}
+#city-search{
+    display: block;
+    font-weight: bold;
+    font-size:larger;
+}
+
+#title-search{
+    display: block;
+    
+}
+
