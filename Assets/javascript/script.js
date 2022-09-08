@@ -17,51 +17,59 @@ function findCity(event){
 
     })
 
-    .then(function (data){
-         let latitude = data.coord.lat;
-         let longitude = data.coord.lon;
-        
-         console.log(latitude);
-         console.log(longitude)
-         let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
-        let uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + latitude + '&lon=' + longitude;
-        
-         fetch(forecastURL)
-         .then(response => {
-             return response.json()
+   .then(function (data){
+    let latitude = data.coord.lat;
+    let longitude = data.coord.lon;
+    let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
+    let uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + latitude + '&lon=' + longitude;
+     
+
+    fetch(forecastURL)
+    .then(response => {
+         return response.json()
+    })
+
+     .then(forecastData => {
+         //console.log(forecastData)
+      forecastData.list.map((element) => {
+            // console.log(element)
          })
-         .then(forecastData => {
-             console.log(forecastData)
-             forecastData.list.map((element) => {
-                 console.log(element)
-             })
+
          })
         fetch(uvURL)
         .then(function (response){
             return response.json()
         })
-console.log(data)
+//console.log(data)
             var cityCurrent = document.createElement('h2');
             var cityTemp = document.createElement('p');
             var cityWind = document.createElement('p');
             var cityHumidity = document.createElement('p');
             var cityUV = document.createElement('p');
             var cityImage = document.createElement('img'); 
-            cityCurrent.textContent = data.name, moment().format("MMM Do YY");
+            cityCurrent.textContent = data.name + moment().format("MMM Do YY");
             cityTemp.textContent = 'Temp: ' + data.main.temp + ' F';
             cityWind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
             cityHumidity.textContent = 'Humidity: ' + data.main.humidity + ' %';
-            cityUV.textContent = 'UV: ' + data.value + ' %';
-            cityImage.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon; + "@2x.png";
+
+            cityImage.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
+
+            //console.log(cityImage)
+
+            fetch(uvURL)
+            .then(response => {
+                return response.json()
+            
+            }).then(uvData => {
+                console.log(uvData)
+                cityUV.textContent = 'UV: ' + uvData.value + ' %';
+            }) 
             cityWeather.append(cityCurrent);
             cityWeather.append(cityTemp);
             cityWeather.append(cityWind);
             cityWeather.append(cityHumidity);
             cityWeather.append(cityUV);
-            cityWeather.append(cityImage);   
-            console.log(cityImage)
-
-            
+            cityWeather.append(cityImage);  
             
 
      })
