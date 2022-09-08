@@ -38,7 +38,7 @@ function findCity(event){
             let temp = document.createElement('p');
             let windSpeed = document.createElement('p');
             let humidity = document.createElement('p');
-            date.textContent = forecastData.list[x].dt;
+            date.textContent = forecastData.list[x].dt_txt;
             icon.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
             temp.textContent = forecastData.list[x].main.temp;
             windSpeed.textContent= forecastData.list[x].wind.speed;
