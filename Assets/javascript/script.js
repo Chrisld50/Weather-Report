@@ -30,16 +30,13 @@ function findCity(event){
     })
 
      .then(forecastData => {
-         //console.log(forecastData)
+         console.log(forecastData)
       forecastData.list.map((element) => {
             // console.log(element)
          })
 
          })
-        fetch(uvURL)
-        .then(function (response){
-            return response.json()
-        })
+
 //console.log(data)
             var cityCurrent = document.createElement('h2');
             var cityTemp = document.createElement('p');
@@ -47,7 +44,7 @@ function findCity(event){
             var cityHumidity = document.createElement('p');
             var cityUV = document.createElement('p');
             var cityImage = document.createElement('img'); 
-            cityCurrent.textContent = data.name + moment().format("MMM Do YY");
+            cityCurrent.textContent = data.name + ' ' + moment().format("MMM Do YY");
             cityTemp.textContent = 'Temp: ' + data.main.temp + ' F';
             cityWind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
             cityHumidity.textContent = 'Humidity: ' + data.main.humidity + ' %';
@@ -61,7 +58,6 @@ function findCity(event){
                 return response.json()
             
             }).then(uvData => {
-                console.log(uvData)
                 cityUV.textContent = 'UV: ' + uvData.value + ' %';
             }) 
             cityWeather.append(cityCurrent);
