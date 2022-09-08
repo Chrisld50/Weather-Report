@@ -16,8 +16,7 @@ function findCity(event){
         return response.json()
 
     })
-
-   .then(function (data){
+    .then(function (data){
     let latitude = data.coord.lat;
     let longitude = data.coord.lon;
     let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
@@ -31,13 +30,12 @@ function findCity(event){
 
      .then(forecastData => {
          console.log(forecastData)
+         let index = [0, 8 , 16, 24, 32];
       forecastData.list.map((element) => {
             // console.log(element)
-         })
+         });
+        });
 
-         })
-
-//console.log(data)
             var cityCurrent = document.createElement('h2');
             var cityTemp = document.createElement('p');
             var cityWind = document.createElement('p');
@@ -51,7 +49,6 @@ function findCity(event){
 
             cityImage.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
 
-            //console.log(cityImage)
 
             fetch(uvURL)
             .then(response => {
