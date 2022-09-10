@@ -19,3 +19,24 @@ margin: 10px;
     
 }
 
+.top-header{
+    border: 5px;
+    border-radius: round;
+}
+
+.card-body{
+    border: black;
+}
+
+.goodUV {
+    background-color: green;
+
+}
+
+.moderateUV{
+    background-color: yellow;
+}
+
+.severeUV{
+    background-color: red;
+}

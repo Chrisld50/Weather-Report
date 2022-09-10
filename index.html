@@ -18,24 +18,40 @@
         <h1 class="topOf"> Weather Dashboard </h1>
     </header>
 
-    <div class="flex-row">
         <div class="container float-left">
+            <div class="row w-100">
             <form id="search-weather" class="form d-grid gap-2 col-4">
                 <label id="title-search">Search For a City: </label>
                 <input id="city-text" type="text" placeholder="City Name">
                 <button class="searchBtn btn-primary col-8 mt-1"> Search </button>
             </form>
-
+            <div class="city-weather col-md-5 text-align-center border border-dark">
+            </div>
+            <h3> 5 Day Forecast </h3>
+        <div class="all-forecast container flex">
+         <div class="top-header"></div>
+            <div class='forecast-5 row border rounded'></div>
+            <div class="card-body"></div>
+         <div class="top-header"></div>
+            <div class='forecast-5 row border rounded'></div>
+            <div class="card-body"></div>
+         <div class="top-header"></div>
+            <div class='forecast-5 row border rounded'></div>
+            <div class="card-body"></div>
+         <div class="top-header"></div>
+            <div class='forecast-5 row border rounded'></div>
+            <div class="card-body"></div>
+         <div class="top-header"></div>
+            <div class='forecast-5 row border rounded'></div>
+            <div class="card-body"></div>
         </div>
-        <div class="city-weather col-md-8 float-right align-items-start border border-dark ">
+            </div>
         </div>
-    </div>
 
-    <div class='forecast-5 col-md-2 justify-end'></div>
 
 
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js'></script>
 <script src="./Assets/javascript/script.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="crossorigin="anonymous"></script>
 </html>

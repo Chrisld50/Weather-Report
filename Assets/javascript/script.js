@@ -2,14 +2,17 @@ var SearchWeather = document.querySelector('#search-weather');
 var cityWeather = document.querySelector('.city-weather');
 var cityText = document.querySelector('#city-text');
 var searchButton = document.querySelector(".searchBtn");
-var weekForecast = document.querySelector('.forecast-5');
+var weekForecast = document.querySelectorAll('.forecast-5');
 const APIKey = "5292a248e8acdb206f3b3112df2113a7";
+
 
 
 
 function findCity(event){
     event.preventDefault();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityText.value + "&appid=" + APIKey +'&units=imperial';
+
+
   
 
     fetch(queryURL)
@@ -38,14 +41,16 @@ function findCity(event){
             let temp = document.createElement('p');
             let windSpeed = document.createElement('p');
             let humidity = document.createElement('p');
-            date.textContent = forecastData.list[x].dt_txt;
+            date.textContent = moment(forecastData.list[x].dt_txt).format("DD/MM/YY");
             icon.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
-            temp.textContent = forecastData.list[x].main.temp;
-            windSpeed.textContent= forecastData.list[x].wind.speed;
-            humidity.textContent = forecastData.list[x].main.humidity;
+            temp.textContent ='Temp: ' + forecastData.list[x].main.temp + ' F';
+            windSpeed.textContent='Wind: ' + forecastData.list[x].wind.speed + ' MPH';
+            humidity.textContent ='Humidity: ' + forecastData.list[x].main.humidity + ' %';
 
-            weekForecast.append(date, icon, temp, windSpeed, humidity);
-            
+            for (i=0; i<weekForecast.length; i++) {
+             const allWeekWeather = weekForecast[i];
+            allWeekWeather.append(date, icon, temp, windSpeed, humidity);
+            }
          }
 
 
@@ -57,7 +62,7 @@ function findCity(event){
             var cityHumidity = document.createElement('p');
             var cityUV = document.createElement('p');
             var cityImage = document.createElement('img'); 
-            cityCurrent.textContent = data.name + ' ' + moment().format("MMM Do YY");
+            cityCurrent.textContent = data.name + ' ' + moment().format("DD/MM/YY");
             cityTemp.textContent = 'Temp: ' + data.main.temp + ' F';
             cityWind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
             cityHumidity.textContent = 'Humidity: ' + data.main.humidity + ' %';
@@ -68,10 +73,24 @@ function findCity(event){
             fetch(uvURL)
             .then(response => {
                 return response.json()
+                
             
             }).then(uvData => {
                 cityUV.textContent = 'UV: ' + uvData.value + ' %';
+                if (uvData.vaue < 3) {
+                    cityUV.classList.add('goodUV')        
+                }
+                if (uvData.value < 7){
+                    cityUV.classList.remove('goodUV')
+                    cityUV.classList.add('moderateUV')
+                }
+                if (uvData.value > 7){
+                    cityCurrent.classList.remove('moderateUV')
+                    cityUV.classList.add('severeUV')
+                }
             }) 
+            
+
             cityWeather.append(cityCurrent);
             cityWeather.append(cityTemp);
             cityWeather.append(cityWind);
@@ -87,4 +106,4 @@ function findCity(event){
     // pull for 5 day forcast: date, image of condition, temp, wind, humidity. 
 
 }
-searchButton.addEventListener('click', findCity)
+searchButton.addEventListener('click',findCity)
