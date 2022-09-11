@@ -3,18 +3,19 @@ var cityWeather = document.querySelector('.city-weather');
 var cityText = document.querySelector('#city-text');
 var searchButton = document.querySelector(".searchBtn");
 var weekForecast = document.querySelectorAll('.forecast-5');
+let cityNameHistory = document.querySelector('.city-name-history');
 const APIKey = "5292a248e8acdb206f3b3112df2113a7";
 
-
+// Above are the global Variables I call in the function and the API key that was made. 
 
 
 function findCity(event){
     event.preventDefault();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityText.value + "&appid=" + APIKey +'&units=imperial';
 
+    // above is the queryURL i created for the API to call what i need from the openweathermap.
 
-  
-
+    // my fetches and .thens are what help pull the data that i need and convert it into json.
     fetch(queryURL)
     .then(function (response) {
         return response.json()
@@ -27,6 +28,7 @@ function findCity(event){
     let uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + latitude + '&lon=' + longitude;
      
 
+    // I do the same here for the forecastURL.
     fetch(forecastURL)
     .then(response => {
          return response.json()
@@ -36,12 +38,12 @@ function findCity(event){
          console.log(forecastData.list)
          let index = [0, 8 , 16, 24, 32];
          for (x of index){
-            let date = document.createElement('h3');
+            let date = document.createElement('h3');   // here my element is being created and added to the html. 
             let icon = document.createElement('img');
             let temp = document.createElement('p');
             let windSpeed = document.createElement('p');
             let humidity = document.createElement('p');
-            date.textContent = moment(forecastData.list[x].dt_txt).format("DD/MM/YY");
+            date.textContent = moment(forecastData.list[x].dt_txt).format("MM/DD/YY");
             icon.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
             temp.textContent ='Temp: ' + forecastData.list[x].main.temp + ' F';
             windSpeed.textContent='Wind: ' + forecastData.list[x].wind.speed + ' MPH';
@@ -56,20 +58,21 @@ function findCity(event){
 
         });
 
-            var cityCurrent = document.createElement('h2');
+            var cityCurrent = document.createElement('h2'); // the same is done here for the current City you type in. 
             var cityTemp = document.createElement('p');
             var cityWind = document.createElement('p');
             var cityHumidity = document.createElement('p');
             var cityUV = document.createElement('p');
             var cityImage = document.createElement('img'); 
-            cityCurrent.textContent = data.name + ' ' + moment().format("DD/MM/YY");
-            cityTemp.textContent = 'Temp: ' + data.main.temp + ' F';
-            cityWind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
-            cityHumidity.textContent = 'Humidity: ' + data.main.humidity + ' %';
+            cityCurrent.textContent = data.name + ' ' + moment().format("MM/DD/YY");
+            cityTemp.textContent = ' Temp: ' + data.main.temp + ' F ';
+            cityWind.textContent = ' Wind: ' + data.wind.speed + ' MPH ';
+            cityHumidity.textContent = ' Humidity: ' + data.main.humidity + ' % ';
 
             cityImage.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
 
 
+            // here is the fetch for the UVURL which was a different url I had to use to get the info for the UV data.
             fetch(uvURL)
             .then(response => {
                 return response.json()
@@ -91,6 +94,9 @@ function findCity(event){
             }) 
             
 
+            
+            
+
             cityWeather.append(cityCurrent);
             cityWeather.append(cityTemp);
             cityWeather.append(cityWind);
@@ -101,9 +107,18 @@ function findCity(event){
 
      })
 
+    //  var historyBtn = document.createElement('button');
+    //  historyBtn.innerHTML = cityText;
+    //  historyBtn.type ='reload';
+    //  historyBtn.name = cityText;
+    //  document.cityNameHistory.appendChild(historyBtn);
+    //  console.log(cityNameHistory)
 
-    // pull: Temp, date, an image of what the weather is, wind, humidity and UV index for main.
-    // pull for 5 day forcast: date, image of condition, temp, wind, humidity. 
+    // above was my attempt to create the history button and work on the store local history, which i was unable to do. 
 
 }
+
+
+
+
 searchButton.addEventListener('click',findCity)

@@ -30,13 +30,22 @@ margin: 10px;
 
 .goodUV {
     background-color: green;
+    border-style: solid;
+    border-radius: round;
+    color: white;
 
 }
 
 .moderateUV{
     background-color: yellow;
+    border-style: solid;
+    border-radius: round;
+    color: white;
 }
 
 .severeUV{
     background-color: red;
+    border-style: solid;
+    border-radius: round;
+    color: white;
 }
