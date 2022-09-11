@@ -11,7 +11,7 @@ const APIKey = "5292a248e8acdb206f3b3112df2113a7";
 
 function findCity(event){
     event.preventDefault();
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityText.value + "&appid=" + APIKey +'&units=imperial';
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityText.value + "&appid=" + APIKey +'&units=imperial';
 
     // above is the queryURL i created for the API to call what i need from the openweathermap.
 
@@ -24,8 +24,8 @@ function findCity(event){
     .then(function (data){
     let latitude = data.coord.lat;
     let longitude = data.coord.lon;
-    let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIKey}&units=imperial`;
-    let uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + latitude + '&lon=' + longitude;
+    let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIKey}&units=imperial`;
+    let uvURL = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + APIKey + '&lat=' + latitude + '&lon=' + longitude;
      
 
     // I do the same here for the forecastURL.
@@ -44,7 +44,7 @@ function findCity(event){
             let windSpeed = document.createElement('p');
             let humidity = document.createElement('p');
             date.textContent = moment(forecastData.list[x].dt_txt).format("MM/DD/YY");
-            icon.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
+            icon.src = "https://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
             temp.textContent ='Temp: ' + forecastData.list[x].main.temp + ' F';
             windSpeed.textContent='Wind: ' + forecastData.list[x].wind.speed + ' MPH';
             humidity.textContent ='Humidity: ' + forecastData.list[x].main.humidity + ' %';
@@ -69,7 +69,7 @@ function findCity(event){
             cityWind.textContent = ' Wind: ' + data.wind.speed + ' MPH ';
             cityHumidity.textContent = ' Humidity: ' + data.main.humidity + ' % ';
 
-            cityImage.src = "http://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
+            cityImage.src = "https://openweathermap.org/img/wn/" +  data.weather[0].icon + "@2x.png";
 
 
             // here is the fetch for the UVURL which was a different url I had to use to get the info for the UV data.
