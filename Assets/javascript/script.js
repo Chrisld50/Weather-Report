@@ -11,7 +11,7 @@ const APIKey = "5292a248e8acdb206f3b3112df2113a7";
 
 function findCity(event){
     event.preventDefault();
-    console.log(event.target.innerText)
+    clearData()
     var cityVal = cityText.value || event.target.innerText
     cityText.value = ''
 
@@ -115,16 +115,16 @@ function findCity(event){
      historyBtn.setAttribute('class','buttonEl btn-dark col-8 mt-1')
      cityNameHistory.append(historyBtn);
 
-//console.log(totalBtn)
+
 
 
 }
 
-// var totalBtn = document.querySelector('.buttonEl');
-// console.log(totalBtn)
+function clearData(){
+    cityWeather.innerHTML = '';
+
+}
+
+
 $(document).on("click", ".buttonEl", findCity);
 searchButton.addEventListener('click',findCity)
-// totalBtn.addEventListener('click', function(){
-//     console.log('Hi')
-// } )
-  
