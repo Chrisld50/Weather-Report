@@ -107,14 +107,13 @@ function findCity(event){
 
      })
 
-    //  var historyBtn = document.createElement('button');
-    //  historyBtn.innerHTML = cityText;
-    //  historyBtn.type ='reload';
-    //  historyBtn.name = cityText;
-    //  document.cityNameHistory.appendChild(historyBtn);
-    //  console.log(cityNameHistory)
+     var historyBtn = document.createElement('button');
+     historyBtn.textContent = cityText.value;
+     cityNameHistory.append(historyBtn);
 
-    // above was my attempt to create the history button and work on the store local history, which i was unable to do. 
+
+
+
 
 }
 
