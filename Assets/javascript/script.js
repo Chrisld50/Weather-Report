@@ -2,7 +2,7 @@ var SearchWeather = document.querySelector('#search-weather');
 var cityWeather = document.querySelector('.city-weather');
 var cityText = document.querySelector('#city-text');
 var searchButton = document.querySelector(".searchBtn");
-var weekForecast = document.querySelectorAll('.forecast-5');
+var weekForecast = document.querySelector('.forecast-5');
 let cityNameHistory = document.querySelector('.city-name-history');
 const APIKey = "5292a248e8acdb206f3b3112df2113a7";
 
@@ -52,10 +52,9 @@ function findCity(event){
             windSpeed.textContent='Wind: ' + forecastData.list[x].wind.speed + ' MPH';
             humidity.textContent ='Humidity: ' + forecastData.list[x].main.humidity + ' %';
 
-            for (i=0; i<weekForecast.length; i++) {
-             const allWeekWeather = weekForecast[i];
-            allWeekWeather.append(date, icon, temp, windSpeed, humidity);
-            }
+
+            weekForecast.append(date, icon, temp, windSpeed, humidity);
+            
          }
 
 
@@ -122,7 +121,7 @@ function findCity(event){
 
 function clearData(){
     cityWeather.innerHTML = '';
-
+    weekForecast.innerHTML = '';
 }
 
 
