@@ -11,7 +11,11 @@ const APIKey = "5292a248e8acdb206f3b3112df2113a7";
 
 function findCity(event){
     event.preventDefault();
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityText.value + "&appid=" + APIKey +'&units=imperial';
+    console.log(event.target.innerText)
+    var cityVal = cityText.value || event.target.innerText
+    cityText.value = ''
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityVal + "&appid=" + APIKey +'&units=imperial';
 
     // above is the queryURL i created for the API to call what i need from the openweathermap.
 
@@ -35,7 +39,6 @@ function findCity(event){
     })
 
      .then(forecastData => {
-         console.log(forecastData.list)
          let index = [0, 8 , 16, 24, 32];
          for (x of index){
             let date = document.createElement('h3');   // here my element is being created and added to the html. 
@@ -108,16 +111,20 @@ function findCity(event){
      })
 
      var historyBtn = document.createElement('button');
-     historyBtn.textContent = cityText.value;
+     historyBtn.textContent = cityVal;
+     historyBtn.setAttribute('class','buttonEl btn-dark col-8 mt-1')
      cityNameHistory.append(historyBtn);
 
-
-
+//console.log(totalBtn)
 
 
 }
 
-
-
-
+// var totalBtn = document.querySelector('.buttonEl');
+// console.log(totalBtn)
+$(document).on("click", ".buttonEl", findCity);
 searchButton.addEventListener('click',findCity)
+// totalBtn.addEventListener('click', function(){
+//     console.log('Hi')
+// } )
+  
